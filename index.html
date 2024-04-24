@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maria Leal</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .showcase-area {
+        background-color: #f4f4f4;
+        padding: 50px 0;
+      }
+    
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    
+      .left {
+        flex: 1;
+        padding-right: 50px;
+      }
+    
+      .big-title h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
+    
+      .cta {
+        margin-top: 20px;
+      }
+    
+      .input-group {
+        margin-bottom: 15px;
+      }
+    
+      input {
+        padding: 10px;
+        font-size: 16px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    
+      span#resultado {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="big-wrapper light">
+        <img src="./img/shape.png" alt="" class="shape" />
+
+        <header>
+          <div class="container">
+            <div class="logo">
+              <img src="./img/logo.png" alt="Logo" />
+              <h3>Maria App</h3>
+            </div>
+
+            <div class="links">
+               
+            </div>
+
+            <div class="overlay"></div>
+
+            <div class="hamburger-menu">
+              <div class="bar"></div>
+            </div>
+          </div>
+        </header>
+
+        <div class="showcase-area">
+          <div class="container">
+            <div class="left">
+              <div class="big-title">
+                <h1>Multiplicar</h1>
+              </div>
+              
+              <div class="cta">
+                <div class="input-group">
+                  <label for="fecha">Ingrese Datos</label>
+                  <input type="number" step="any" id="primero" placeholder="Ingrese primer numero" required>
+                </div>
+                <div class="input-group">
+                  <input type="number" step="any" id="segundo" placeholder="Ingrese segundo numero" required>
+                </div>
+                <button id="multiplicar">Multiplicar</button>
+              </div>
+              <span>Resultado: <span id="resultadoMultiplicar"></span></span>
+            </div>
+           
+        
+            <div class="right">
+              <div class="big-title">
+                <h1>Calcular Edad</h1>
+              </div>
+              
+              <div class="cta">
+                <div class="input-group">
+                  <label for="fecha">Ingrese su fecha de nacimiento</label>
+                  <input type="date" id="fecha"   required>
+                </div>
+                
+                <button id="calcularEdad">Calcular</button>
+              </div>
+              <span>Resultado: <span id="resultadoEdad"></span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-area">
+          <div class="container">
+            <div class="left">
+              <div class="big-title">
+                <h1>Calcular tiempo</h1>
+              </div>
+              
+              <div class="cta">
+                <div class="input-group">
+                  <label for="fecha">Ingrese Datos</label>
+                  <input type="number" id="velocidad" placeholder="Velocidad (k/h)" required>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="distancia" placeholder="Distancia (Km)" required>
+                </div>
+                <button id="calcularBtn">Calcular</button>
+              </div>
+              <span>Resultado: <span id="resultado"></span></span>
+            </div>
+        
+            <div class="right">
+              <div class="big-title">
+                <h1>Promedio</h1>
+              </div>
+              <label for="fecha">Ingrese Datos</label>
+              <div class="cta">
+                <div class="input-group pro">
+                  <input type="number" id="nota1" placeholder="Ingrese nota" required>
+                </div>
+                <div class="input-group pro">
+                  <input type="number" id="nota2" placeholder="Ingrese nota" required>
+                </div>
+                <div class="input-group pro">
+                  <input type="number" id="nota3" placeholder="Ingrese nota" required>
+                </div>
+                <div class="input-group pro">
+                  <input type="number" id="nota4" placeholder="Ingrese nota" required>
+                </div>
+                <div class="input-group pro">
+                  <input type="number" id="nota5" placeholder="Ingrese nota" required>
+                </div>
+               
+                
+                <button id="calcularPromedioBtn">Calcular</button>
+              </div>
+              <span>Resultado: <span id="resultadoPromedio"></span></span>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </main>
+
+    <!-- JavaScript Files -->
+
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Calcular tiempo de recorrido
+    const velocidadInput = document.getElementById("velocidad");
+    const distanciaInput = document.getElementById("distancia");
+    const calcularBtn = document.getElementById("calcularBtn");
+    const resultadoSpan = document.getElementById("resultado");
+
+    calcularBtn.addEventListener("click", function() {
+      const velocidad = parseFloat(velocidadInput.value);
+      const distancia = parseFloat(distanciaInput.value);
+
+      if (velocidad <= 0 || distancia <= 0) {
+        resultadoSpan.textContent = "Por favor, ingresa valores válidos.";
+        return;
+      }
+
+      const tiempo = distancia / velocidad;
+      resultadoSpan.textContent = `Tiempo de recorrido: ${tiempo.toFixed(2)} horas`;
+    });
+
+    // Multiplicar dos números
+    const primeroInput = document.getElementById("primero");
+    const segundoInput = document.getElementById("segundo");
+    const multiplicarBtn = document.getElementById("multiplicar");
+    const resultadoMultiplicarSpan = document.getElementById("resultadoMultiplicar");
+
+    multiplicarBtn.addEventListener("click", function() {
+      const primero = parseFloat(primeroInput.value);
+      const segundo = parseFloat(segundoInput.value);
+
+      const resultado = primero * segundo;
+      resultadoMultiplicarSpan.textContent = `Resultado: ${resultado}`;
+    });
+
+    // Calcular promedio y determinar aprobación/reprobación
+    const notaInputs = document.querySelectorAll(" .pro input");
+    const calcularPromedioBtn = document.getElementById("calcularPromedioBtn");
+    const resultadoPromedioSpan = document.getElementById("resultadoPromedio");
+
+    calcularPromedioBtn.addEventListener("click", function() {
+      let suma = 0;
+      notaInputs.forEach(input => {
+        const nota = parseFloat(input.value);
+        if (nota < 0 || nota > 25) {
+          resultadoPromedioSpan.textContent = "Por favor, ingresa valores válidos (0-25).";
+          return;
+        }
+        suma += nota;
+      });
+
+      const promedio = suma / notaInputs.length;
+      resultadoPromedioSpan.textContent = `Promedio: ${promedio.toFixed(2)}`;
+
+      if (promedio >= 12) {
+        resultadoPromedioSpan.textContent += " Aprobado";
+      } else {
+        resultadoPromedioSpan.textContent += " Reprobado";
+      }
+    });
+
+    // Calcular edad
+    const fechaInput = document.getElementById("fecha");
+    const calcularEdadBtn = document.getElementById("calcularEdad");
+    const resultadoEdadSpan = document.getElementById("resultadoEdad");
+
+    calcularEdadBtn.addEventListener("click", function() {
+      const fechaNacimiento = new Date(fechaInput.value);
+      const hoy = new Date();
+      const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+      resultadoEdadSpan.textContent = `Edad: ${edad} años`;
+    });
+  });
+</script>
