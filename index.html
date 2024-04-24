@@ -86,23 +86,34 @@
 
         <div class="showcase-area">
           <div class="container">
-            <div class="left">
-              <div class="big-title">
-                <h1>Multiplicar</h1>
+            
+              
+              <div class="left">
+                <div class="big-title">
+                  <h1>Tablas</h1>
+                </div>
+                
+                <div class="cta">
+                  <div class="input-group">
+                    <label for="tabla">Seleccione tabla</label>
+                    <select id="tabla">
+                      <option value="1">Tabla del 1</option>
+                      <option value="2">Tabla del 2</option>
+                      <option value="3">Tabla del 3</option>
+                      <option value="4">Tabla del 4</option>
+                      <option value="5">Tabla del 5</option>
+                      <option value="6">Tabla del 6</option>
+                      <option value="7">Tabla del 7</option>
+                      <option value="8">Tabla del 8</option>
+                      <option value="9">Tabla del 9</option>
+                    </select>
+                  </div>
+                  
+                  <button id="calcularBtn2">Buscar</button>
+                </div>
+                <span>Resultado: <span id="resultado2"></span></span>
               </div>
               
-              <div class="cta">
-                <div class="input-group">
-                  <label for="fecha">Ingrese Datos</label>
-                  <input type="number" step="any" id="primero" placeholder="Ingrese primer numero" required>
-                </div>
-                <div class="input-group">
-                  <input type="number" step="any" id="segundo" placeholder="Ingrese segundo numero" required>
-                </div>
-                <button id="multiplicar">Multiplicar</button>
-              </div>
-              <span>Resultado: <span id="resultadoMultiplicar"></span></span>
-            </div>
            
         
             <div class="right">
@@ -205,19 +216,25 @@
       resultadoSpan.textContent = `Tiempo de recorrido: ${tiempo.toFixed(2)} horas`;
     });
 
-    // Multiplicar dos números
-    const primeroInput = document.getElementById("primero");
-    const segundoInput = document.getElementById("segundo");
-    const multiplicarBtn = document.getElementById("multiplicar");
-    const resultadoMultiplicarSpan = document.getElementById("resultadoMultiplicar");
+    const tablaSelect = document.getElementById("tabla");
+  const calcularBtn2 = document.getElementById("calcularBtn2");
+  const resultadoSpan2 = document.getElementById("resultado2");
 
-    multiplicarBtn.addEventListener("click", function() {
-      const primero = parseFloat(primeroInput.value);
-      const segundo = parseFloat(segundoInput.value);
+  calcularBtn2.addEventListener("click", function() {
+    const tablaSeleccionada = parseInt(tablaSelect.value);
 
-      const resultado = primero * segundo;
-      resultadoMultiplicarSpan.textContent = `Resultado: ${resultado}`;
-    });
+    if (tablaSeleccionada < 1 || tablaSeleccionada > 9) {
+      resultadoSpan.textContent = "Por favor, seleccione una tabla válida.";
+      return;
+    }
+
+    let resultado = "";
+    for (let i = 1; i <= 10; i++) {
+      resultado += `${tablaSeleccionada} x ${i} = ${tablaSeleccionada * i}<br>`;
+    }
+
+    resultadoSpan2.innerHTML = resultado;
+  });
 
     // Calcular promedio y determinar aprobación/reprobación
     const notaInputs = document.querySelectorAll(" .pro input");
